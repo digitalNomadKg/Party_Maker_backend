@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -73,3 +74,4 @@ public class ServiceDetails {
         this.user = user;
     }
 }
+*/

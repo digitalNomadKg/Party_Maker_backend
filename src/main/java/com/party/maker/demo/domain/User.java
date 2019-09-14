@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -126,3 +127,4 @@ public class User {
         this.role = role;
     }
 }
+*/

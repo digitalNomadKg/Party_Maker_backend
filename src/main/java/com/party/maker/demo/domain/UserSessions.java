@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -45,3 +46,4 @@ public class UserSessions {
         this.logOutTime = logOutTime;
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -63,3 +64,4 @@ public class ServiceCategory {
         this.updateDate = updateDate;
     }
 }
+*/

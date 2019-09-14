@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 public enum PaymentStatus {
@@ -6,3 +7,4 @@ public enum PaymentStatus {
     AUTHORIZED,
     CANCELLED
 }
+*/

@@ -1,37 +1,52 @@
 package com.party.maker.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "event_details")
 public class EventDetails {
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
-    private Long eventID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "EVENT_NAME")
     private String eventName;
+    @Column(name = "EVENT_DATE")
     private LocalDate date;
+    @Column(name = "BUDGET")
     private Integer budget;
+    @Column(name = "ACTUAL_AMOUNT")
     private Integer actualAmount;
+    @Column(name = "STATUS")
     @Enumerated(value = EnumType.STRING)
     private EventStatus eventStatus;
+    @Column(name = "CREATED_DATE")
     private LocalDateTime createDate;
+    @Column(name = "PAID_DATE")
     private LocalDateTime paidDate;
+    @Column(name = "UPDATED_DATE")
     private LocalDateTime updateDate;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private EventCategory category;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<ClientPayment> payments;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
 
-    public Long getEventID() {
-        return eventID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private EventCategory category;
+
+/*    private ClientPayment payments;
+    private User user;*/
+
+    public Long getId() {
+        return id;
     }
 
-    public void setEventID(Long eventID) {
-        this.eventID = eventID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEventName() {
@@ -104,21 +119,5 @@ public class EventDetails {
 
     public void setCategory(EventCategory category) {
         this.category = category;
-    }
-
-    public List<ClientPayment> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(List<ClientPayment> payments) {
-        this.payments = payments;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

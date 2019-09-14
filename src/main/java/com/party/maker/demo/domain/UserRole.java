@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -35,3 +36,4 @@ public class UserRole {
         this.effectiveDate = effectiveDate;
     }
 }
+*/

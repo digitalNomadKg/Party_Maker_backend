@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -103,3 +104,4 @@ public class HostPayment {
         this.clientPayment = clientPayment;
     }
 }
+*/

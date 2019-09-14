@@ -1,35 +1,38 @@
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "event_category")
 public class EventCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private BigInteger id;
+    @Column(name = "EVENT_NAME")
     private String eventName;
-    @Enumerated(value = EnumType.STRING)
+
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "category")
+    private Set<EventDetails> eventDetails = new HashSet<>();
+    //private List<EventDetails> eventDetailsList;
+   /* @Enumerated(value = EnumType.STRING)
     private EventStatus categoryStatus;
     private Integer budget;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
+    private User user;*/
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
@@ -41,35 +44,11 @@ public class EventCategory {
         this.eventName = eventName;
     }
 
-    public EventStatus getCategoryStatus() {
-        return categoryStatus;
+    public Set<EventDetails> getEventDetails() {
+        return eventDetails;
     }
 
-    public void setCategoryStatus(EventStatus categoryStatus) {
-        this.categoryStatus = categoryStatus;
-    }
-
-    public Integer getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Integer budget) {
-        this.budget = budget;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setEventDetails(Set<EventDetails> eventDetails) {
+        this.eventDetails = eventDetails;
     }
 }
