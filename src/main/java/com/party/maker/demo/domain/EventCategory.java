@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "event_category")
 public class EventCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CATEGORY_ID")
     private long id;
     @Column(name = "EVENT_NAME")

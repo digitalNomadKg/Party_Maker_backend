@@ -1,16 +1,19 @@
-/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "user_roles")
 public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ROLE_ID")
     private Long roleID;
+    @Column(name = "ROLE_NAME")
     private String name;
-    private LocalDate effectiveDate;
+    @Column(name = "START_DATE")
+    private LocalDate startDate;
 
     public Long getRoleID() {
         return roleID;
@@ -28,12 +31,11 @@ public class UserRole {
         this.name = name;
     }
 
-    public LocalDate getEffectiveDate() {
-        return effectiveDate;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setEffectiveDate(LocalDate effectiveDate) {
-        this.effectiveDate = effectiveDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 }
-*/
