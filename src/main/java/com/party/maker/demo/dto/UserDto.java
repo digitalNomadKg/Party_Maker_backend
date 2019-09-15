@@ -1,12 +1,10 @@
-package com.party.maker.demo.domain;
+package com.party.maker.demo.dto;
 
-import javax.persistence.*;
+import com.party.maker.demo.domain.UserRole;
+
 import java.time.LocalDate;
 
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class UserDto {
     private Long userID;
     private String userName;
     private String password;
@@ -19,8 +17,6 @@ public class User {
     private String phoneNumber;
     private LocalDate createdDate;
     private LocalDate updatedDate;
-    @ManyToOne
-    @JoinColumn(name = "ROLE_ID", nullable = true)
     private UserRole role;
 
     public Long getUserID() {

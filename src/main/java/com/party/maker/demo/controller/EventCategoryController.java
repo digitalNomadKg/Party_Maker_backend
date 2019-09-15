@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/category/event")
+@RequestMapping("/event")
 public class EventCategoryController {
     private final EventCategoryRepository categoryRepository;
 
@@ -18,7 +18,7 @@ public class EventCategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/category")
     public EventCategory createCategory(@RequestBody EventCategory category){
         return categoryRepository.save(category);
     }
