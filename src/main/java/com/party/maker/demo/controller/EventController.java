@@ -1,6 +1,5 @@
 package com.party.maker.demo.controller;
 
-import com.party.maker.demo.domain.EventCategory;
 import com.party.maker.demo.domain.EventDetails;
 import com.party.maker.demo.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;

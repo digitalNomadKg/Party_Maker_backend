@@ -17,12 +17,12 @@ public class UserRoleController {
         this.userRoleService = userRoleService;
     }
 
-    @PostMapping(value = "/create/role")
+    @PostMapping(value = "/role")
     public UserRole createRole(@RequestBody UserRolesDto userRolesDto){
         return userRoleService.addUserRole(userRolesDto);
     }
 
-    @GetMapping(value = "/roles/find/{id}")
+    @GetMapping(value = "/role/{id}")
     public ResponseEntity<UserRolesDto> findUserRoleById (@PathVariable Long id) throws UserNotFoundException {
         return new ResponseEntity(userRoleService.findById(id), HttpStatus.OK);
     }
