@@ -14,6 +14,7 @@ import java.util.List;
 public class EventDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "EVENT_ID")
     private Long id;
     @Column(name = "EVENT_NAME")
     private String eventName;
@@ -33,9 +34,8 @@ public class EventDetails {
     @Column(name = "UPDATED_DATE")
     private LocalDateTime updateDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY_ID", nullable = true)
     private EventCategory category;
 
 /*    private ClientPayment payments;
