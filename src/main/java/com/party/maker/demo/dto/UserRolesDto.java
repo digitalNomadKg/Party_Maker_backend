@@ -1,11 +1,10 @@
 package com.party.maker.demo.dto;
 
-import javax.persistence.Column;
-import java.time.LocalDate;
+import com.party.maker.demo.domain.UserRoleType;
 
 public class UserRolesDto {
     private Long roleID;
-    private String name;
+    private UserRoleType role;
 
     public Long getRoleID() {
         return roleID;
@@ -15,11 +14,11 @@ public class UserRolesDto {
         this.roleID = roleID;
     }
 
-    public String getName() {
-        return name;
+    public UserRoleType getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(UserRoleType role) {
+        this.role = role;
     }
 }

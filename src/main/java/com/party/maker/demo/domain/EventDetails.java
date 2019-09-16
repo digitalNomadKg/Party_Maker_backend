@@ -1,21 +1,16 @@
 package com.party.maker.demo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "event_details")
 public class EventDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EVENT_ID")
-    private Long id;
+    private long id;
     @Column(name = "EVENT_NAME")
     private String eventName;
     @Column(name = "EVENT_DATE")
@@ -38,14 +33,17 @@ public class EventDetails {
     @JoinColumn(name = "CATEGORY_ID")
     private EventCategory category;
 
-/*    private ClientPayment payments;
-    private User user;*/
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
 
-    public Long getId() {
+    /*    private ClientPayment payments;*/
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -119,5 +117,13 @@ public class EventDetails {
 
     public void setCategory(EventCategory category) {
         this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,6 +1,6 @@
 package com.party.maker.demo.dto;
 
-import com.party.maker.demo.domain.UserRole;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ public class UserDto {
     private String phoneNumber;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private UserRole role;
+    private Long roleId;
 
     public Long getUserID() {
         return userID;
@@ -116,11 +116,11 @@ public class UserDto {
         this.updatedDate = updatedDate;
     }
 
-    public UserRole getRole() {
-        return role;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

@@ -2,6 +2,7 @@ package com.party.maker.demo.dto;
 
 import com.party.maker.demo.domain.EventCategory;
 import com.party.maker.demo.domain.EventStatus;
+import com.party.maker.demo.domain.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,24 +18,7 @@ public class EventDto {
     private LocalDateTime paidDate;
     private LocalDateTime updateDate;
     private EventCategory category;
-
-/*
-    public EventDto() {
-    }
-
-    public EventDto(String eventName, LocalDate date, Integer budget, Integer actualAmount, EventStatus eventStatus,
-                    LocalDateTime createDate, LocalDateTime paidDate, LocalDateTime updateDate, EventCategory category) {
-        this.eventName = eventName;
-        this.date = date;
-        this.budget = budget;
-        this.actualAmount = actualAmount;
-        this.eventStatus = eventStatus;
-        this.createDate = createDate;
-        this.paidDate = paidDate;
-        this.updateDate = updateDate;
-        this.category = category;
-    }
-*/
+    private User user;
 
     public Long getId() {
         return id;
@@ -114,5 +98,13 @@ public class EventDto {
 
     public void setCategory(EventCategory category) {
         this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

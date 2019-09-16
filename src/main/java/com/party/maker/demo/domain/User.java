@@ -1,6 +1,7 @@
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -9,6 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userID;
+    @NotNull
     private String userName;
     private String password;
     private String firstName;

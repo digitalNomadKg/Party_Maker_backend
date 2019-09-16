@@ -10,8 +10,9 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ROLE_ID")
     private Long roleID;
+    @Enumerated(EnumType.STRING)
     @Column(name = "ROLE_NAME")
-    private String name;
+    private UserRoleType roleType;
     @Column(name = "START_DATE")
     private LocalDate startDate;
 
@@ -23,12 +24,12 @@ public class UserRole {
         this.roleID = roleID;
     }
 
-    public String getName() {
-        return name;
+    public UserRoleType getRoleType() {
+        return roleType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleType(UserRoleType roleType) {
+        this.roleType = roleType;
     }
 
     public LocalDate getStartDate() {
