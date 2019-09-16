@@ -1,45 +1,40 @@
-package com.party.maker.demo.domain;
+package com.party.maker.demo.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.party.maker.demo.domain.EventCategory;
+import com.party.maker.demo.domain.EventStatus;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
-@Table(name = "event_details")
-public class EventDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "EVENT_ID")
+public class EventDto {
     private Long id;
-    @Column(name = "EVENT_NAME")
     private String eventName;
-    @Column(name = "EVENT_DATE")
     private LocalDate date;
-    @Column(name = "BUDGET")
     private Integer budget;
-    @Column(name = "ACTUAL_AMOUNT")
     private Integer actualAmount;
-    @Column(name = "STATUS")
-    @Enumerated(value = EnumType.STRING)
     private EventStatus eventStatus;
-    @Column(name = "CREATED_DATE")
     private LocalDateTime createDate;
-    @Column(name = "PAID_DATE")
     private LocalDateTime paidDate;
-    @Column(name = "UPDATED_DATE")
     private LocalDateTime updateDate;
-
-    @ManyToOne
-    @JoinColumn(name = "CATEGORY_ID")
     private EventCategory category;
 
-/*    private ClientPayment payments;
-    private User user;*/
+/*
+    public EventDto() {
+    }
+
+    public EventDto(String eventName, LocalDate date, Integer budget, Integer actualAmount, EventStatus eventStatus,
+                    LocalDateTime createDate, LocalDateTime paidDate, LocalDateTime updateDate, EventCategory category) {
+        this.eventName = eventName;
+        this.date = date;
+        this.budget = budget;
+        this.actualAmount = actualAmount;
+        this.eventStatus = eventStatus;
+        this.createDate = createDate;
+        this.paidDate = paidDate;
+        this.updateDate = updateDate;
+        this.category = category;
+    }
+*/
 
     public Long getId() {
         return id;

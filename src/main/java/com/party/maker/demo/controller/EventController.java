@@ -32,7 +32,7 @@ public class EventController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<EventDetails> findById(@PathVariable Long id){
         EventDetails details = eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" +id));
-        ResponseEntity responseEntity = new ResponseEntity(details, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity(details, HttpStatus.OK);
     }
+
 }

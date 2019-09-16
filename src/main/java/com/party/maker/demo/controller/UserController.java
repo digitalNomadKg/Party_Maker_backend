@@ -4,11 +4,14 @@ import com.party.maker.demo.domain.User;
 import com.party.maker.demo.dto.UserDto;
 import com.party.maker.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -17,8 +20,28 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/add")
     public User createUser(@RequestBody UserDto userDto){
         return userService.addUser(userDto);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> findAllUsers(){
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/hosts")
+    public ResponseEntity<List<UserDto>> findHosts(){
+        return new ResponseEntity<>(userService.getAllHosts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/clients")
+    public ResponseEntity<List<UserDto>> findClients(){
+        return new ResponseEntity<>(userService.getAllClients(), HttpStatus.OK);
+    }
+
+    @GetMapping("/admins")
+    public ResponseEntity<List<UserDto>> findAdmins(){
+        return new ResponseEntity<>(userService.getAllAdmins(), HttpStatus.OK);
     }
 }

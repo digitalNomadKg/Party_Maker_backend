@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Table(name = "user_roles")
 public class UserRole {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ROLE_ID")
     private Long roleID;
     @Column(name = "ROLE_NAME")
