@@ -27,12 +27,26 @@ public class EventController {
     @GetMapping(value = "/events")
     public ResponseEntity<List<EventDetails>> findAllEvents(){
         List<EventDetails> eventDetailsList = eventRepository.findAll();
-        return new ResponseEntity<List<EventDetails>>(eventDetailsList, HttpStatus.OK);
+        return new ResponseEntity<>(eventDetailsList, HttpStatus.OK);
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity<EventDetails> findById(@PathVariable Long id){
         EventDetails details = eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" +id));
-        return new ResponseEntity(details, HttpStatus.OK);
+        return new ResponseEntity<>(details, HttpStatus.OK);
     }
 
+    @PatchMapping(value = "/update/{id}")
+    public ResponseEntity<EventDetails> update(@RequestBody EventDetails event, @PathVariable Long id){
+        if(eventRepository.findById(id).isPresent()){
+            eventRepository.save(event);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<? extends List<EventDetails>> deleteAllEvents(){
+        List<EventDetails> eventList = eventRepository.findAll();
+        return new ResponseEntity<>(eventList, HttpStatus.OK);
+    }
 }

@@ -1,6 +1,5 @@
 package com.party.maker.demo.util;
 
-import com.party.maker.demo.domain.User;
 import com.party.maker.demo.domain.UserRole;
 import com.party.maker.demo.domain.UserRoleType;
 
@@ -9,26 +8,26 @@ public class RoleFactory {
 
     UserRole assignRoleFactory(Long roleId) {
 
-        if (roleId == 1) {
+        if (roleId.equals(1L)) {
             userRole.setRoleID(roleId);
             userRole.setRoleType(UserRoleType.ADMIN);
         }
-        if (roleId == 2) {
+        if (roleId.equals(2L)) {
             userRole.setRoleID(roleId);
             userRole.setRoleType(UserRoleType.HOST);
         }
-        if (roleId == 3) {
+        if (roleId.equals(3L)) {
             userRole.setRoleID(roleId);
             userRole.setRoleType(UserRoleType.CLIENT);
         }
-        return null;
+        return userRole;
     }
 
     public UserRoleType getRoleType(Long roleId) {
 
-        if (roleId == 1) {
+        if (roleId.equals(1L)) {
             return UserRoleType.ADMIN;
-        } else if (roleId == 2) {
+        } else if (roleId.equals(2L)) {
             return UserRoleType.HOST;
         } else {
             return UserRoleType.CLIENT;
