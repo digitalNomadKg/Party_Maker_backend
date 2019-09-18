@@ -1,49 +1,30 @@
-package com.party.maker.demo.domain;
+package com.party.maker.demo.dto;
 
-import javax.persistence.*;
+import com.party.maker.demo.domain.EventCategory;
+import com.party.maker.demo.domain.EventStatus;
+import com.party.maker.demo.domain.User;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "event_details")
-public class EventDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "EVENT_ID")
-    private long id;
-    @Column(name = "EVENT_NAME")
+public class EventDto {
+    private Long id;
     private String eventName;
-    @Column(name = "EVENT_DATE")
     private LocalDate date;
-    @Column(name = "BUDGET")
     private Integer budget;
-    @Column(name = "ACTUAL_AMOUNT")
     private Integer actualAmount;
-    @Column(name = "STATUS")
-    @Enumerated(value = EnumType.STRING)
     private EventStatus eventStatus;
-    @Column(name = "CREATED_DATE")
     private LocalDateTime createDate;
-    @Column(name = "PAID_DATE")
     private LocalDateTime paidDate;
-    @Column(name = "UPDATED_DATE")
     private LocalDateTime updateDate;
-
-    @ManyToOne
-    @JoinColumn(name = "CATEGORY_ID")
     private EventCategory category;
-
-    @ManyToOne
-    @JoinColumn(name = "userid")
     private User user;
 
-    /*    private ClientPayment payments;*/
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

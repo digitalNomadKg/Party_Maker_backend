@@ -26,5 +26,4 @@ public class UserRoleController {
     public ResponseEntity<UserRolesDto> findUserRoleById (@PathVariable Long id) throws UserNotFoundException {
         return new ResponseEntity(userRoleService.findById(id), HttpStatus.OK);
     }
-
 }

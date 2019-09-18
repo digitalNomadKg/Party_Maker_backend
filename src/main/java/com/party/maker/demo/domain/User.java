@@ -1,13 +1,16 @@
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userID;
+    @NotNull
     private String userName;
     private String password;
     private String firstName;
@@ -17,10 +20,10 @@ public class User {
     private String city;
     private String country;
     private String phoneNumber;
-    private LocalDate createdDate;
-    private LocalDate updatedDate;
+    private LocalDateTime createdDateTime;
+    private LocalDateTime updatedDateTime;
     @ManyToOne
-    @JoinColumn(name = "ROLE_ID", nullable = true)
+    @JoinColumn(name = "ROLE_ID")
     private UserRole role;
 
     public Long getUserID() {
@@ -103,20 +106,20 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
-    public LocalDate getUpdatedDate() {
-        return updatedDate;
+    public LocalDateTime getUpdatedDateTime() {
+        return updatedDateTime;
     }
 
-    public void setUpdatedDate(LocalDate updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setUpdatedDateTime(LocalDateTime updatedDateTime) {
+        this.updatedDateTime = updatedDateTime;
     }
 
     public UserRole getRole() {
