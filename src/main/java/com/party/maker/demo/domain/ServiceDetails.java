@@ -1,22 +1,29 @@
-/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "service_details")
 public class ServiceDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "SERVICE_ID")
     private Long serviceID;
-    @OneToMany(fetch = FetchType.EAGER)
-    private ServiceCategory service;
+    @Column(name = "SERVICE_NAME")
+    private String serviceName;
+    @Column(name = "UOM")
     private String unitOfMeasurement;
+    @Column(name = "UNIT_PRICE")
     private Long unitPrice;
+    @Column(name = "CREATED_DATE")
     private LocalDateTime createDate;
+    @Column(name = "UPDATED_DATE")
     private LocalDateTime updateDate;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "SERVICE_CATEGORY_ID")
+    private ServiceCategory serviceCategory;
 
     public Long getServiceID() {
         return serviceID;
@@ -26,12 +33,12 @@ public class ServiceDetails {
         this.serviceID = serviceID;
     }
 
-    public ServiceCategory getService() {
-        return service;
+    public String getServiceName() {
+        return serviceName;
     }
 
-    public void setService(ServiceCategory service) {
-        this.service = service;
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public String getUnitOfMeasurement() {
@@ -66,12 +73,11 @@ public class ServiceDetails {
         this.updateDate = updateDate;
     }
 
-    public User getUser() {
-        return user;
+    public ServiceCategory getServiceCategory() {
+        return serviceCategory;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setServiceCategory(ServiceCategory serviceCategory) {
+        this.serviceCategory = serviceCategory;
     }
 }
-*/
