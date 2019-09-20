@@ -1,4 +1,3 @@
-/*
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
@@ -7,22 +6,32 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "order_details")
 public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ORDER_ID")
     private Long orderID;
+    @Column(name = "QUANTITY")
     private Long quantity;
+    @Column(name = "TOTAL_AMOUNT")
     private BigDecimal totalAmount;
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "STATUS")
     private EventStatus status;
+    @Column(name = "CREATED_BY")
     private LocalDateTime createDate;
+    @Column(name = "UPDATED_BY")
     private LocalDateTime updateDate;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "EVENT_ID")
     private EventDetails eventDetails;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "SERVICE_ID")
+    private ServiceDetails serviceDetails;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<ServiceDetails> serviceDetails;
 
     public Long getOrderID() {
         return orderID;
@@ -80,6 +89,14 @@ public class OrderDetails {
         this.eventDetails = eventDetails;
     }
 
+    public ServiceDetails getServiceDetails() {
+        return serviceDetails;
+    }
+
+    public void setServiceDetails(ServiceDetails serviceDetails) {
+        this.serviceDetails = serviceDetails;
+    }
+
     public User getUser() {
         return user;
     }
@@ -87,13 +104,5 @@ public class OrderDetails {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public List<ServiceDetails> getServiceDetails() {
-        return serviceDetails;
-    }
-
-    public void setServiceDetails(List<ServiceDetails> serviceDetails) {
-        this.serviceDetails = serviceDetails;
-    }
 }
-*/
+
