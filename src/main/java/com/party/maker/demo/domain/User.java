@@ -6,21 +6,34 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "USER_ID")
     private Long userID;
     @NotNull
+    @Column(name = "USER_NAME")
     private String userName;
+    @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "FIRST_NAME")
     private String firstName;
+    @Column(name = "LAST_NAME")
     private String lastName;
+    @Column(name = "EMAIL")
     private String email;
+    @Column(name = "DATE_OF_BIRTH")
     private LocalDate dateOfBirth;
+    @Column(name = "CITY")
     private String city;
+    @Column(name = "COUNTRY")
     private String country;
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
+    @Column(name = "CREATED_DATE")
     private LocalDateTime createdDateTime;
+    @Column(name = "UPDATED_DATE")
     private LocalDateTime updatedDateTime;
     @ManyToOne
     @JoinColumn(name = "ROLE_ID")

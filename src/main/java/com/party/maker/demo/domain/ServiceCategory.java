@@ -1,27 +1,32 @@
-/*
+
 package com.party.maker.demo.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name="service_category")
 public class ServiceCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long categoryID;
+    @Column(name="SERVICE_CATEGORY_ID")
+    private Long serviceCategoryID;
+    @Column(name="SERVICE_CATEGORY_NAME")
     private String serviceName;
     @Enumerated(value = EnumType.STRING)
+    @Column(name="STATUS")
     private EventStatus serviceStatus;
-    private String serviceDescription;
+    @Column(name="CREATED_DATE")
     private LocalDateTime createDate;
+    @Column(name="UPDATED_DATE")
     private LocalDateTime updateDate;
 
-    public Long getCategoryID() {
-        return categoryID;
+    public Long getServiceCategoryID() {
+        return serviceCategoryID;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setServiceCategoryID(Long serviceCategoryID) {
+        this.serviceCategoryID = serviceCategoryID;
     }
 
     public String getServiceName() {
@@ -40,14 +45,6 @@ public class ServiceCategory {
         this.serviceStatus = serviceStatus;
     }
 
-    public String getServiceDescription() {
-        return serviceDescription;
-    }
-
-    public void setServiceDescription(String serviceDescription) {
-        this.serviceDescription = serviceDescription;
-    }
-
     public LocalDateTime getCreateDate() {
         return createDate;
     }
@@ -64,4 +61,3 @@ public class ServiceCategory {
         this.updateDate = updateDate;
     }
 }
-*/

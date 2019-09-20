@@ -34,7 +34,7 @@ public class EventDetails {
     private EventCategory category;
 
     @ManyToOne
-    @JoinColumn(name = "userid")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     /*    private ClientPayment payments;*/
