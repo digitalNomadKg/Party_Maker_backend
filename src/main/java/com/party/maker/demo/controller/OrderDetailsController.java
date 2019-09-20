@@ -28,11 +28,11 @@ public class OrderDetailsController {
 
     }
 
-    /*@GetMapping(value = "/orders")
-    public ResponseEntity<List<OrderDetails>> findAllEvents() {
-        List<OrderDetails> orderDetailsList=orderDetailsRepository.findAll();
+    @GetMapping(value = "/orders")
+    public ResponseEntity<Iterable<OrderDetails>> findAllEvents() {
+        Iterable<OrderDetails> orderDetailsList=orderDetailsRepository.findAll();
         return new ResponseEntity<>(orderDetailsList, HttpStatus.OK);
-    }*/
+    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<OrderDetails> findById(@PathVariable Long id) {
