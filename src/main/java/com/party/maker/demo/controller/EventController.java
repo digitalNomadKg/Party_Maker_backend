@@ -1,7 +1,9 @@
 package com.party.maker.demo.controller;
 
 import com.party.maker.demo.domain.EventDetails;
+import com.party.maker.demo.dto.EventDto;
 import com.party.maker.demo.repository.EventRepository;
+import com.party.maker.demo.service.EventDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,24 +14,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/event")
 public class EventController {
-    private final EventRepository eventRepository;
+    private final EventDetailsService eventDetailsService;
 
     @Autowired
-    public EventController(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
+    public EventController(EventDetailsService eventDetailsService) {
+        this.eventDetailsService = eventDetailsService;
     }
 
+
     @PostMapping(value = "/create")
-    public EventDetails createEvent(@RequestBody EventDetails eventDetails) {
-        return eventRepository.save(eventDetails);
+    public EventDetails createEvent(@RequestBody EventDto eventDto) {
+        return eventDetailsService.save(eventDto);
     }
 
     @GetMapping(value = "/events")
-    public ResponseEntity<List<EventDetails>> findAllEvents() {
-        List<EventDetails> eventDetailsList = eventRepository.findAll();
-        return new ResponseEntity<>(eventDetailsList, HttpStatus.OK);
+    public ResponseEntity<List<EventDto>> findAllEvents() {
+        List<EventDto> eventDtos = eventDetailsService.findAllEvents();
+        return new ResponseEntity<>(eventDtos, HttpStatus.OK);
     }
-
+    /**
+     * The following part is under construction...
+     * */
+/*
     @GetMapping(value = "/{id}")
     public ResponseEntity<EventDetails> findById(@PathVariable Long id) {
         EventDetails details = eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
@@ -69,4 +75,5 @@ public class EventController {
         List<EventDetails> eventList = eventRepository.findAll();
         return new ResponseEntity<>(eventList, HttpStatus.OK);
     }
+    */
 }

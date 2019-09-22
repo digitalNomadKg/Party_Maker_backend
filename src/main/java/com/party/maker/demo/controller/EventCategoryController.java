@@ -1,48 +1,54 @@
 package com.party.maker.demo.controller;
 
 import com.party.maker.demo.domain.EventCategory;
-import com.party.maker.demo.repository.EventCategoryRepository;
+import com.party.maker.demo.dto.EventCategoryDto;
+import com.party.maker.demo.exceptions.CategoryNotFoundException;
+import com.party.maker.demo.service.EventCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/category")
 public class EventCategoryController {
-    private final EventCategoryRepository categoryRepository;
+
+    private final EventCategoryService eventCategoryService;
 
     @Autowired
-    public EventCategoryController(EventCategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
-
-    @PostMapping("/add")
-    public EventCategory create(@RequestBody EventCategory category){
-        return categoryRepository.save(category);
+    public EventCategoryController(EventCategoryService eventCategoryService) {
+        this.eventCategoryService = eventCategoryService;
     }
 
     @GetMapping("/categories")
-    public ResponseEntity<Iterable<EventCategory>> getAllCategories(){
-        Iterable<EventCategory> categories = categoryRepository.findAll();
-        return new ResponseEntity<>(categories, HttpStatus.OK);
+    public ResponseEntity<Iterable<EventCategory>> getAllCategories() {
+        return new ResponseEntity(eventCategoryService.getAllCategories(), HttpStatus.OK);
     }
 
+
+    @PostMapping("/add")
+    public EventCategory create(@RequestBody EventCategoryDto categoryDto) {
+        return eventCategoryService.save(categoryDto);
+    }
+
+
     @PatchMapping("/update/{id}")
-    public ResponseEntity<EventCategory> update(@RequestBody EventCategory category, @PathVariable Long id){
-        if(categoryRepository.findById(id).isPresent()){
-            categoryRepository.save(category);
+    public ResponseEntity<EventCategory> update(@RequestBody EventCategoryDto categoryDto, @PathVariable Long id) {
+        if (eventCategoryService.findById(id) != null) {
+            eventCategoryService.save(categoryDto);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<EventCategory> delete(@PathVariable Long id, EventCategory category){
-        if(categoryRepository.findById(id).isPresent()){
-        categoryRepository.delete(category);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity delete(@PathVariable Long id) {
+        if (eventCategoryService.findById(id) != null) {
+            eventCategoryService.delete(id);
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }
