@@ -28,7 +28,7 @@ public class UserRoleService {
             UserRole userRole = userRoleRepository.findById(id).get();
             return convertUserRoleToUserRolesDto(userRole);
         }
-        throw new UserNotFoundException("Invalid id or role type doesn't exist");
+       throw new UserNotFoundException("Invalid id or role type doesn't exist");
     }
 
     private UserRolesDto convertUserRoleToUserRolesDto(UserRole userRole) {
