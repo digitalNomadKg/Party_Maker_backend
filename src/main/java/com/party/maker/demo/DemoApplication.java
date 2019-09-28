@@ -15,7 +15,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class DemoApplication /*implements CommandLineRunner*/ {
+public class
+
+DemoApplication /*implements CommandLineRunner*/ {
 
 /*	private final EventRepository repository;
 

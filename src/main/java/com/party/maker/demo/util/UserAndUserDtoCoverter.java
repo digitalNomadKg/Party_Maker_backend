@@ -21,7 +21,7 @@ public class UserAndUserDtoCoverter {
         userDto.setCity(user.getCity());
         userDto.setCountry(user.getCountry());
         userDto.setDateOfBirth(user.getDateOfBirth());
-        userDto.setUserName(user.getUserName());
+        userDto.setUserName(user.getUsername());
         userDto.setCreatedDate(user.getCreatedDateTime());
         userDto.setUpdatedDate(user.getUpdatedDateTime());
         userDto.setRoleId(user.getRole().getRoleID());
@@ -42,7 +42,7 @@ public class UserAndUserDtoCoverter {
             user.setCreatedDateTime(LocalDateTime.now());
        // }
         user.setUpdatedDateTime(LocalDateTime.now());
-        user.setUserName(userDto.getUserName());
+        user.setUsername(userDto.getUserName());
         user.setRole(roleFactory.assignRoleFactory(userDto.getRoleId()));
         return user;
     }

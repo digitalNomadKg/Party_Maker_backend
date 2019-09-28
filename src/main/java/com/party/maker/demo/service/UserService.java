@@ -4,13 +4,14 @@ import com.party.maker.demo.domain.User;
 import com.party.maker.demo.domain.UserRoleType;
 import com.party.maker.demo.dto.UserDto;
 import com.party.maker.demo.exceptions.UserAlreadyExistsException;
-import com.party.maker.demo.exceptions.UserNotFoundException;
 import com.party.maker.demo.repository.UserRepository;
 import com.party.maker.demo.util.RoleFactory;
 import com.party.maker.demo.util.UserAndUserDtoCoverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class UserService {
     }
 
     public User addUser(UserDto userDto) throws UserAlreadyExistsException {
-        if (!getIsExists(userDto)) {
+        if (userRepository.findByUserName(userDto.getUserName())== null) {
             User user = converter.convertUserDtoToUser(userDto);
             return userRepository.save(user);
         }
@@ -39,7 +40,7 @@ public class UserService {
     public Boolean getIsExists(UserDto userDto) {
         List<User> users = userRepository.findAll();
         for (User user : users) {
-            if (userDto.getUserName().equals(user.getUserName())) {
+            if (userDto.getUserName().equals(user.getUsername())) {
                 return true;
             }
         }
@@ -49,7 +50,7 @@ public class UserService {
 /*    public User getUserByUsername(UserDto userDto){
         List<User> users = userRepository.findAll();
         for (User user : users){
-            if(userDto.getUserName().equals(user.getUserName())){
+            if(userDto.getUsername().equals(user.getUsername())){
                 return user;
             }
         }
@@ -137,5 +138,9 @@ public class UserService {
         if (userRepository.findById(id).isPresent()) {
             userRepository.deleteById(id);
         }
+    }
+
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        return null;
     }
 }
