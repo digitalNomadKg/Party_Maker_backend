@@ -8,7 +8,7 @@ public class RoleFactory {
 
     UserRole assignRoleFactory(Long roleId) {
 
-        if (roleId.equals(1L)) {
+        if (1L == roleId) {
             userRole.setRoleID(roleId);
             userRole.setRoleType(UserRoleType.ADMIN);
         }

@@ -4,6 +4,7 @@ import com.party.maker.demo.domain.User;
 import com.party.maker.demo.domain.UserRoleType;
 import com.party.maker.demo.dto.UserDto;
 import com.party.maker.demo.exceptions.UserAlreadyExistsException;
+import com.party.maker.demo.exceptions.UserNotFoundException;
 import com.party.maker.demo.repository.UserRepository;
 import com.party.maker.demo.util.RoleFactory;
 import com.party.maker.demo.util.UserAndUserDtoCoverter;
@@ -29,9 +30,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User addUser(UserDto userDto) throws UserAlreadyExistsException {
-        if (userRepository.findByUserName(userDto.getUserName())== null) {
-            User user = converter.convertUserDtoToUser(userDto);
+    public User addUser(User user) throws UserAlreadyExistsException {
+        if (userRepository.findByUserName(user.getUsername())== null) {
             return userRepository.save(user);
         }
         throw new UserAlreadyExistsException("This user already exists");
@@ -129,7 +129,7 @@ public class UserService {
         return null;
     }
 
-    public User editUser(UserDto userDto) {
+    public User editUser(UserDto userDto) throws UserNotFoundException {
         User user = converter.convertUserDtoToUser(userDto);
         return userRepository.save(user);
     }

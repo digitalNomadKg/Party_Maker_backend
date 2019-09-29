@@ -36,9 +36,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/add")
-    @PreAuthorize("hasRole('ADMIN')")
-    public User create(@RequestBody UserDto userDto) throws Throwable {
-        return userService.addUser(userDto);
+    public User create(@RequestBody User user) throws Throwable {
+        return userService.addUser(user);
     }
 
 /*    @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -58,7 +57,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ADMIN')")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         return userService.logout(request,response);
     }
@@ -70,26 +68,26 @@ public class UserController {
     }
 
     @GetMapping("/hosts")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UserDto>> findHosts(){
         return new ResponseEntity<>(userService.getAllHosts(), HttpStatus.OK);
     }
 
     @GetMapping("/clients")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UserDto>> findClients(){
         return new ResponseEntity<>(userService.getAllClients(), HttpStatus.OK);
     }
 
     @GetMapping("/admins")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UserDto>> findAdmins(){
         return new ResponseEntity<>(userService.getAllAdmins(), HttpStatus.OK);
     }
 
     @PatchMapping("/update/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<User> updateById(@PathVariable Long id){
+    public ResponseEntity<User> updateById(@PathVariable Long id) throws UserNotFoundException {
         if(userService.getUserById(id) == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

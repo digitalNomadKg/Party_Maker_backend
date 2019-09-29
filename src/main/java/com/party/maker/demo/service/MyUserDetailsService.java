@@ -34,14 +34,14 @@ public class MyUserDetailsService implements UserDetailsService {
 
     public Collection<GrantedAuthority> getGrantedAuthorities(User user) {
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        if(user.getRole().getRoleType().name().equals("admin")){
-            grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+        if(user.getRole().getRoleType().name().equals("ADMIN")){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
-        if(user.getRole().getRoleType().name().equals("host")){
-            grantedAuthorities.add(new SimpleGrantedAuthority("HOST"));
+        if(user.getRole().getRoleType().name().equals("HOST")){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_HOST"));
         }
-        if(user.getRole().getRoleType().name().equals("client")){
-            grantedAuthorities.add(new SimpleGrantedAuthority("CLIENT"));
+        if(user.getRole().getRoleType().name().equals("CLIENT")){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
         }
         return grantedAuthorities;
     }

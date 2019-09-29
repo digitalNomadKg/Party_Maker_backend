@@ -57,14 +57,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().and().authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/user/login").permitAll()
                 .antMatchers("/api/authenticate/**").permitAll()
                 .antMatchers("/user/add").permitAll()
                 .antMatchers("/event/events").permitAll()
+                .antMatchers("/user/role").permitAll()
+                .antMatchers("/user/role/roles").permitAll()
+                .antMatchers("/user/role/{id}").permitAll()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated().and()
                 .logout()
-                .logoutSuccessUrl("/login?logout=true")
+                .logoutSuccessUrl("/user/login?logout=true")
                 //.invalidateHttpSession(true)
                 .permitAll().deleteCookies("remember-me").permitAll().and()
                 .rememberMe().tokenValiditySeconds(180).and().httpBasic();

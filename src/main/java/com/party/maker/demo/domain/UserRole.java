@@ -18,10 +18,11 @@ public class UserRole {
     @Column(name = "START_DATE")
     private LocalDate startDate;
 
-    @OneToMany(targetEntity = User.class, mappedBy = "role")
+   /* @OneToMany(targetEntity = User.class, mappedBy = "role")
     private List<User> userSet;
 
-
+*/
+/*
     public List<User> getUserSet() {
         return userSet;
     }
@@ -29,6 +30,7 @@ public class UserRole {
     public void setUserSet(Set<User> userSet) {
         this.userSet = (List<User>) userSet;
     }
+*/
 
 
     public Long getRoleID() {

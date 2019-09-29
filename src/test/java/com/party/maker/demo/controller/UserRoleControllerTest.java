@@ -1,3 +1,4 @@
+/*
 package com.party.maker.demo.controller;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -56,3 +57,4 @@ public class UserRoleControllerTest {
                 .andExpect(status().isCreated());
     }
 }
+*/

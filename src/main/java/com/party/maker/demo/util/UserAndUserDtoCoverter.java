@@ -1,7 +1,10 @@
 package com.party.maker.demo.util;
 
 import com.party.maker.demo.domain.User;
+import com.party.maker.demo.domain.UserRole;
 import com.party.maker.demo.dto.UserDto;
+import com.party.maker.demo.exceptions.UserNotFoundException;
+import com.party.maker.demo.service.UserRoleService;
 import com.party.maker.demo.service.UserService;
 
 import java.time.LocalDateTime;
@@ -9,6 +12,7 @@ import java.time.LocalDateTime;
 public class UserAndUserDtoCoverter {
     private UserService userService;
     private RoleFactory roleFactory;
+    private UserRoleService roleService;
 
     public UserDto convertUserToUserDto(User user) {
         UserDto userDto = new UserDto();
@@ -28,7 +32,7 @@ public class UserAndUserDtoCoverter {
         return userDto;
     }
 
-    public User convertUserDtoToUser(UserDto userDto) {
+    public User convertUserDtoToUser(UserDto userDto){
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
@@ -43,7 +47,7 @@ public class UserAndUserDtoCoverter {
        // }
         user.setUpdatedDateTime(LocalDateTime.now());
         user.setUsername(userDto.getUserName());
-        user.setRole(roleFactory.assignRoleFactory(userDto.getRoleId()));
+       // user.setRole();
         return user;
     }
 

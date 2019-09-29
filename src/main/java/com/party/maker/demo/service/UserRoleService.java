@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class UserRoleService {
@@ -23,12 +24,16 @@ public class UserRoleService {
         return userRoleRepository.save(userRole);
     }
 
-    public UserRolesDto findById(Long id) throws UserNotFoundException {
+    public UserRole findById(Long id) throws UserNotFoundException {
         if(userRoleRepository.findById(id).isPresent()){
             UserRole userRole = userRoleRepository.findById(id).get();
-            return convertUserRoleToUserRolesDto(userRole);
+            return userRole;
         }
        throw new UserNotFoundException("Invalid id or role type doesn't exist");
+    }
+
+    public Iterable<UserRole> findAll(){
+        return userRoleRepository.findAll();
     }
 
     private UserRolesDto convertUserRoleToUserRolesDto(UserRole userRole) {
